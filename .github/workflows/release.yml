@@ -2,7 +2,6 @@ name: Create Release
 on: push
 jobs:
   release-project:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -11,13 +10,14 @@ jobs:
       with:
         filename: AcsActionBarSaver.zip
         exclusions: '*.git* /*node_modules/* .editorconfig'
+        command: "mkdir -p AcsActionBarSaver"
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ github.run_number }}
+        tag_name: v1.0.${{ github.run_number }}
         release_name: AcsActionBarSaver
     - name: Upload asset to Github Release
       uses: actions/upload-release-asset@v1
