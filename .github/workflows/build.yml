@@ -1,7 +1,7 @@
 name: Create Release
 on: push
 jobs:
-  steps:
+  release-project:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
@@ -9,20 +9,21 @@ jobs:
     - name: Archive Release
       uses: thedoctor0/zip-release@0.7.5
       with:
-        filename: 'AcsActionBarSaver.zip'
+        filename: AcsActionBarSaver.zip
     - name: Create Github Release
-      id: create-new-release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ github.run_number }}
+        release_name: AcsActionBarSaver
     - name: Upload asset to Github Release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create-new-release.outputs.upload.url }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./AcsActionBarSaver.zip
         asset_name: AcsActionBarSaver.zip
         asset_content_type: application/zip
