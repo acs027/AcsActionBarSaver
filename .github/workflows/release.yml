@@ -7,10 +7,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Create Folder
-      run: |
-        mkdir AcsActionBarSaver
-        cp -r !(AcsActionBarSaver) AcsActionBarSaver
-      shell: bash
+      run: mkdir AcsActionBarSaver
+    - name: Copy Files to Folder
+      run: cp -r !(AcsActionBarSaver) AcsActionBarSaver
     - name: Archive Release
       uses: thedoctor0/zip-release@0.7.5
       with:
