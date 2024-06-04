@@ -6,12 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Create Folder
+      run: |
+        mkdir AcsActionBarSaver
+        cp -r !(AcsActionBarSaver) AcsActionBarSaver
+      shell: bash
     - name: Archive Release
       uses: thedoctor0/zip-release@0.7.5
       with:
         filename: AcsActionBarSaver.zip
         exclusions: '*.git* /*node_modules/* .editorconfig'
-        command: "mkdir AcsActionBarSaver, mv README.md AcsActionBarSaver"
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
