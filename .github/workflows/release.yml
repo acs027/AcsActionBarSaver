@@ -6,10 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Create Folder
-      run: mkdir AcsActionBarSaver
-    - name: Copy Files to Folder
+    - name: Create Folder and Move Files
       run: |
+        mkdir AcsActionBarSaver
         mv README.md AcsActionBarSaver
         mv AcsActionBarSaver.toc AcsActionBarSaver
         mv AcsActionBarSaver.lua AcsActionBarSaver
