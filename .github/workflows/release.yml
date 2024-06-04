@@ -9,7 +9,10 @@ jobs:
     - name: Create Folder
       run: mkdir AcsActionBarSaver
     - name: Copy Files to Folder
-      run: cp -r !(AcsActionBarSaver) AcsActionBarSaver
+      run: |
+        mv README.md AcsActionBarSaver
+        mv AcsActionBarSaver.toc AcsActionBarSaver
+        mv AcsActionBarSaver.lua AcsActionBarSaver
     - name: Archive Release
       uses: thedoctor0/zip-release@0.7.5
       with:
