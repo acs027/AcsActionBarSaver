@@ -1,0 +1,8 @@
+## Interface: 11502
+## Author: aCs027
+## Version: 1.0.0
+## Title: AcsActionBarSaver
+## Notes: Save your action bars /aabs
+## SavedVariablesPerCharacter: AcsActionBarSaverDB
+
+AcsActionBarSaver.lua
