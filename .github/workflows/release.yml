@@ -2,6 +2,7 @@ name: Create Release
 on: push
 jobs:
   release-project:
+  permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -10,7 +11,7 @@ jobs:
       with:
         filename: AcsActionBarSaver.zip
         exclusions: '*.git* /*node_modules/* .editorconfig'
-        command: "mkdir -p AcsActionBarSaver"
+        command: 'mkdir -p AcsActionBarSaver'
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
