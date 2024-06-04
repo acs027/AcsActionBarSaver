@@ -11,7 +11,7 @@ jobs:
       with:
         filename: AcsActionBarSaver.zip
         exclusions: '*.git* /*node_modules/* .editorconfig'
-        command: 'mkdir -p AcsActionBarSaver'
+        command: "mkdir AcsActionBarSaver, mv README.md AcsActionBarSaver"
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
