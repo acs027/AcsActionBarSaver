@@ -1,28 +1,49 @@
 
 AcsActionBarSaverDB = {}
 
+local function compareActions(i, actionInfo)
+    local type, id = GetActionInfo(i)
+
+    if (type == actionInfo.type and id == actionInfo.id) then
+        return false
+    else 
+        return true
+    end
+end
+
+local function nilActionCompare(i)
+    local action = GetActionInfo(i)
+
+    if action == nil then 
+        return false
+    else
+        return true
+    end
+end
+
 local function changeActionBars(tab)
     ClearCursor()
     for i = 1, 180 do
-        if tab[i] ~= nil then 
-            local temp = tab[i]
-
-            if temp.type == "macro" then
-                PickupMacro(temp.id)
-                PlaceAction(i)
-            elseif temp.type == "spell" then
-                PickupSpell(temp.id)
-                PlaceAction(i)
-            elseif temp.type == "item" then
-                PickupItem(temp.id)
-                PlaceAction(i)
+        local temp = tab[i]
+        if temp ~= nil then
+            if compareActions(i, temp) then
+                if temp.type == "macro" then
+                    PickupMacro(temp.id)
+                    PlaceAction(i)
+                elseif temp.type == "spell" then
+                    PickupSpell(temp.id)
+                    PlaceAction(i)
+                elseif temp.type == "item" then
+                    PickupItem(temp.id)
+                    PlaceAction(i)
+                end
+                ClearCursor()
             end
-            ClearCursor()
         else
-            local actionInfo = GetActionInfo(i)
-            if actionInfo ~= nil then
+            if nilActionCompare(i) then
                 PickupAction(i)
                 ClearCursor()
+            end
         end
     end
     print("Action bar setup loaded successfully")
