@@ -17,10 +17,13 @@ local function changeActionBars(tab)
                 PickupItem(temp.id)
                 PlaceAction(i)
             end
+            ClearCursor()
         else
-            PickupAction(i)
+            local actionInfo = GetActionInfo(i)
+            if actionInfo ~= nil then
+                PickupAction(i)
+                ClearCursor()
         end
-        ClearCursor()
     end
     print("Action bar setup loaded successfully")
 end
